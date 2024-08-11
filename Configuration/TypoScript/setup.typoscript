@@ -1,0 +1,8 @@
+plugin.tx_semanticsuggestionNlp {
+    settings {
+        enableNlpAnalysis = {$plugin.tx_semanticsuggestionNlp.settings.enableNlpAnalysis}
+        selectedScenario = {$plugin.tx_semanticsuggestionNlp.settings.selectedScenario}
+    }
+}
+
+module.tx_semanticsuggestionNlp < plugin.tx_semanticsuggestionNlp

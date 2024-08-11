@@ -1,0 +1,30 @@
+{
+    "name": "talan-hdf/semantic-suggestion-nlp",
+    "type": "typo3-cms-extension",
+    "description": "TYPO3 extension for suggesting semantically related pages with NLP capabilities",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Talan HDF",
+            "email": "cyril.wolfangel@gmail.com"
+        },
+        {
+            "name": "Wolfangel Cyril",
+            "email": ""
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^12.4 || ^13.0",
+        "talan-hdf/semantic-suggestion": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Talan\\SemanticSuggestionNlp\\": "Classes"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "semantic_suggestion_nlp"
+        }
+    }
+}
