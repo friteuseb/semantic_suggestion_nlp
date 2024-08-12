@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Talan\\SemanticSuggestionNlp\\": "Classes"
+            "TalanHdf\\SemanticSuggestionNlp\\": "Classes"
         }
     },
     "extra": {

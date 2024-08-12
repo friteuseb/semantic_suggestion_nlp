@@ -2,14 +2,24 @@
 defined('TYPO3') or die();
 
 (function () {
+    // Register the NLP analysis hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['semantic_suggestion']['nlpAnalysis'][] = 
-        \Vendor\SemanticSuggestionNlp\Hooks\PageAnalysisHook::class . '->analyze';
+        \TalanHdf\SemanticSuggestionNlp\Hooks\PageAnalysisHook::class . '->analyze';
 
     // Register backend module for NLP configuration
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'SemanticSuggestionNlp',
         'NlpConfig',
-        [\Vendor\SemanticSuggestionNlp\Controller\ConfigurationController::class => 'index,save'],
-        [\Vendor\SemanticSuggestionNlp\Controller\ConfigurationController::class => 'index,save']
+        [
+            \TalanHdf\SemanticSuggestionNlp\Controller\ConfigurationController::class => 'index,save'
+        ],
+        [
+            \TalanHdf\SemanticSuggestionNlp\Controller\ConfigurationController::class => 'index,save'
+        ]
+    );
+
+    // Add TypoScript setup
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
+        '@import "EXT:semantic_suggestion_nlp/Configuration/TypoScript/setup.typoscript"'
     );
 })();
