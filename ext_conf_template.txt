@@ -1,0 +1,2 @@
+# cat=basic/enable/10; type=boolean; label=Enable NLP Analysis
+enableNlpAnalysis = 1

@@ -14,9 +14,11 @@ class DefaultScenario extends AbstractScenario
             $suggestions[] = 'Consider adding more content to improve SEO.';
         }
         
-        if ($analysis['uniqueWordCount'] / $analysis['wordCount'] < 0.5) {
+        // Vérification si wordCount est différent de zéro avant de diviser (garder cette ligne)
+        if ($analysis['wordCount'] > 0 && $analysis['uniqueWordCount'] / $analysis['wordCount'] < 0.5) {
             $suggestions[] = 'Try to use a more diverse vocabulary to enhance content quality.';
         }
+        
         
         foreach ($analysis['topWords'] as $word => $count) {
             if ($count > 5) {
@@ -28,5 +30,6 @@ class DefaultScenario extends AbstractScenario
             'analysis' => $analysis,
             'suggestions' => $suggestions,
         ];
+        
     }
 }

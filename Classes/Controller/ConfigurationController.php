@@ -19,7 +19,7 @@ class ConfigurationController extends ActionController
         $configuration = $this->extensionConfiguration->get('semantic_suggestion_nlp');
         $scenarios = [
             'DefaultScenario' => 'Default Scenario',
-            // Add more scenarios here as they are implemented
+            // Ajoutez d'autres scénarios ici si nécessaire
         ];
 
         $this->view->assign('configuration', $configuration);

@@ -1,0 +1,248 @@
+{
+    "composer": {
+        "name": "talan-hdf/semantic-suggestion-nlp",
+        "description": "TYPO3 extension for suggesting semantically related pages with NLP capabilities",
+        "version": "",
+        "type": "typo3-cms-extension",
+        "require": {
+            "typo3/cms-core": "^12.4 || ^13.0",
+            "talan-hdf/semantic-suggestion": "^1.0"
+        },
+        "autoload": {
+            "psr-4": {
+                "TalanHdf\\SemanticSuggestionNlp\\": "Classes"
+            }
+        },
+        "extra": {
+            "typo3/cms": {
+                "extension-key": "semantic_suggestion_nlp"
+            }
+        }
+    },
+    "other_files": [
+        "semantic_suggestion_nlp/composer.json",
+        "semantic_suggestion_nlp/README.md",
+        "semantic_suggestion_nlp/extension_analysis_report.json",
+        "semantic_suggestion_nlp/.git/COMMIT_EDITMSG",
+        "semantic_suggestion_nlp/.git/HEAD",
+        "semantic_suggestion_nlp/.git/description",
+        "semantic_suggestion_nlp/.git/config",
+        "semantic_suggestion_nlp/.git/index",
+        "semantic_suggestion_nlp/.git/info/exclude",
+        "semantic_suggestion_nlp/.git/objects/66/f93579af6f11f86e766dd3a03c9bc7ac9b4029",
+        "semantic_suggestion_nlp/.git/objects/b1/a2ff8c7b1080473a1bb386659738041932d1f5",
+        "semantic_suggestion_nlp/.git/objects/88/fdb8bdcd13abd9b345e9424950bff1ff3fb1da",
+        "semantic_suggestion_nlp/.git/objects/4f/09f48791248447454d9c3ee5d1eff63aec13c9",
+        "semantic_suggestion_nlp/.git/objects/5c/cb57126da85fefc9beb17efbb0c319ffe5fe20",
+        "semantic_suggestion_nlp/.git/objects/19/09622eab04d5428f0cbb2bfb8945231ffab677",
+        "semantic_suggestion_nlp/.git/objects/d9/8756a84dfd8b6ca52f0f2c8d86ef894e250317",
+        "semantic_suggestion_nlp/.git/objects/43/ea483c817a13227b23d6536907d915fbfdc735",
+        "semantic_suggestion_nlp/.git/objects/b2/10257389c41357fe90c35aa9deef5f45ff835b",
+        "semantic_suggestion_nlp/.git/objects/27/94b3097d25afef6c1413c6a07f8c715a479d81",
+        "semantic_suggestion_nlp/.git/objects/5f/8600ebfe3de22c085b525c0309a09612a1ebe0",
+        "semantic_suggestion_nlp/.git/objects/eb/1c837eefddc35dd35cb6896d59c608d43fec6a",
+        "semantic_suggestion_nlp/.git/objects/eb/a785a1fe5051a478940947510c0443dcf2f2cd",
+        "semantic_suggestion_nlp/.git/objects/f0/792f0a90bf56a0961c74bf9eab82923b5071f1",
+        "semantic_suggestion_nlp/.git/objects/3e/096751d291f4d10984b1f53e29f9221c0f2dcc",
+        "semantic_suggestion_nlp/.git/objects/22/33746ba1e657e790186ef875bed29df5dd6892",
+        "semantic_suggestion_nlp/.git/objects/01/11356cf230a5704b5518d4588fd50fc30cebd5",
+        "semantic_suggestion_nlp/.git/objects/f7/8e70210f11cb9a04737ae6e1ffce7e5c150e88",
+        "semantic_suggestion_nlp/.git/objects/f7/8ebdf4db967a8da751b80953a05b08806984ba",
+        "semantic_suggestion_nlp/.git/objects/37/51af3a8b1de919c50b7bfefd08acdb011ba412",
+        "semantic_suggestion_nlp/.git/objects/61/a4f7bf1dc5117c5ea96c4eb1322626d44eeb22",
+        "semantic_suggestion_nlp/.git/objects/70/5a8c40d18bf916f236549025b623234e421821",
+        "semantic_suggestion_nlp/.git/objects/9d/3bb44ee2195169cb903ae2a1a38e6c56cf5ee6",
+        "semantic_suggestion_nlp/.git/objects/6c/7d1b8dabd3bc04743517856397ab84a140e103",
+        "semantic_suggestion_nlp/.git/objects/3b/39be4950f660757f6a8bfba499c10da854c487",
+        "semantic_suggestion_nlp/.git/objects/a4/745a23ec6b2bce37bbd1cee81ea7d36ca524dd",
+        "semantic_suggestion_nlp/.git/objects/f5/4a2ffbcdc2a17694d83a61839aa457d18072c7",
+        "semantic_suggestion_nlp/.git/objects/c5/f42566fa722806ab58de4c345ef6003bb4053f",
+        "semantic_suggestion_nlp/.git/objects/c5/1a6c941183fb5b20f393dbd2c32f27ebccd327",
+        "semantic_suggestion_nlp/.git/objects/5b/a6d68d677d174ecee697aea46618db5654e074",
+        "semantic_suggestion_nlp/.git/objects/2f/505746bffdea680cbd536b9396e5d9160894be",
+        "semantic_suggestion_nlp/.git/objects/0c/d4004c8e5e32ec608560388763c2d79d042b4c",
+        "semantic_suggestion_nlp/.git/objects/7c/df55fd5375a4ed470ea3258d4423d365e26b04",
+        "semantic_suggestion_nlp/.git/objects/c6/8de75aed0d87e316d6543c00f827dfbf468a8d",
+        "semantic_suggestion_nlp/.git/objects/c6/16301b0b259db1f92518752f6a0213660bda4a",
+        "semantic_suggestion_nlp/.git/objects/de/a28459f62c6ca3ea5c240010408d764794e0b8",
+        "semantic_suggestion_nlp/.git/objects/8b/c81ac17975866a286cd27715fa09873dd785f5",
+        "semantic_suggestion_nlp/.git/objects/81/effb12aca14b8bb7cd3079bfb05ee6d5615374",
+        "semantic_suggestion_nlp/.git/objects/e3/0ae73c7c882fb8d3685ce05031e843faa5e55a",
+        "semantic_suggestion_nlp/.git/logs/HEAD",
+        "semantic_suggestion_nlp/.git/logs/refs/heads/master",
+        "semantic_suggestion_nlp/.git/logs/refs/remotes/origin/master",
+        "semantic_suggestion_nlp/.git/refs/heads/master",
+        "semantic_suggestion_nlp/.git/refs/remotes/origin/master",
+        "semantic_suggestion_nlp/.git/hooks/pre-rebase.sample",
+        "semantic_suggestion_nlp/.git/hooks/pre-push.sample",
+        "semantic_suggestion_nlp/.git/hooks/pre-commit.sample",
+        "semantic_suggestion_nlp/.git/hooks/applypatch-msg.sample",
+        "semantic_suggestion_nlp/.git/hooks/commit-msg.sample",
+        "semantic_suggestion_nlp/.git/hooks/push-to-checkout.sample",
+        "semantic_suggestion_nlp/.git/hooks/fsmonitor-watchman.sample",
+        "semantic_suggestion_nlp/.git/hooks/pre-receive.sample",
+        "semantic_suggestion_nlp/.git/hooks/prepare-commit-msg.sample",
+        "semantic_suggestion_nlp/.git/hooks/update.sample",
+        "semantic_suggestion_nlp/.git/hooks/pre-merge-commit.sample",
+        "semantic_suggestion_nlp/.git/hooks/pre-applypatch.sample",
+        "semantic_suggestion_nlp/.git/hooks/post-update.sample"
+    ],
+    "php_files": [
+        {
+            "path": "semantic_suggestion_nlp/ext_emconf.php",
+            "namespace": "",
+            "uses": [],
+            "class": "",
+            "functions": []
+        },
+        {
+            "path": "semantic_suggestion_nlp/ext_localconf.php",
+            "namespace": "",
+            "uses": [],
+            "class": "",
+            "functions": []
+        },
+        {
+            "path": "semantic_suggestion_nlp/Classes/Controller/ConfigurationController.php",
+            "namespace": "TalanHdf\\SemanticSuggestionNlp\\Controller",
+            "uses": [
+                "TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ActionController",
+                "TYPO3\\CMS\\Core\\Configuration\\ExtensionConfiguration",
+                "TYPO3\\CMS\\Core\\Utility\\GeneralUtility"
+            ],
+            "class": "ConfigurationController",
+            "functions": [
+                "__construct",
+                "indexAction",
+                "saveAction"
+            ]
+        },
+        {
+            "path": "semantic_suggestion_nlp/Classes/NLP/Analyzer.php",
+            "namespace": "TalanHdf\\SemanticSuggestionNlp\\NLP",
+            "uses": [
+                "external libraries or APIs for more advanced analysis\n        \n        return [\n            'wordCount' => $wordCount,\n            'uniqueWordCount' => $uniqueWordCount,\n            'topWords' => array_slice(array_count_values($words), 0, 5, true),\n            // Add more analysis results here\n        ]"
+            ],
+            "class": "Analyzer",
+            "functions": [
+                "analyze"
+            ]
+        },
+        {
+            "path": "semantic_suggestion_nlp/Classes/Hooks/PageAnalysisHook.php",
+            "namespace": "TalanHdf\\SemanticSuggestionNlp\\Hooks",
+            "uses": [
+                "TYPO3\\CMS\\Core\\Utility\\GeneralUtility",
+                "TalanHdf\\SemanticSuggestionNlp\\NLP\\Analyzer",
+                "TalanHdf\\SemanticSuggestionNlp\\Scenario\\DefaultScenario",
+                "TYPO3\\CMS\\Core\\Configuration\\ExtensionConfiguration"
+            ],
+            "class": "PageAnalysisHook",
+            "functions": [
+                "analyze"
+            ]
+        },
+        {
+            "path": "semantic_suggestion_nlp/Classes/Scenario/DefaultScenario.php",
+            "namespace": "TalanHdf\\SemanticSuggestionNlp\\Scenario",
+            "uses": [
+                "a more diverse vocabulary to enhance content quality.'"
+            ],
+            "class": "DefaultScenario",
+            "functions": [
+                "process"
+            ]
+        },
+        {
+            "path": "semantic_suggestion_nlp/Classes/Scenario/AbstractScenario.php",
+            "namespace": "TalanHdf\\SemanticSuggestionNlp\\Scenario",
+            "uses": [
+                "TalanHdf\\SemanticSuggestionNlp\\NLP\\Analyzer"
+            ],
+            "class": "AbstractScenario",
+            "functions": [
+                "__construct",
+                "process",
+                "getAnalysis"
+            ]
+        }
+    ],
+    "template_files": [
+        {
+            "path": "semantic_suggestion_nlp/Resources/Private/Templates/Configuration/Index.html",
+            "size": 901,
+            "lines": 23
+        }
+    ],
+    "typoscript_files": [
+        {
+            "path": "semantic_suggestion_nlp/Configuration/TypoScript/constants.typoscript",
+            "size": 359,
+            "lines": 9
+        },
+        {
+            "path": "semantic_suggestion_nlp/Configuration/TypoScript/setup.typoscript",
+            "size": 301,
+            "lines": 8
+        }
+    ],
+    "critical_files": {
+        "ext_emconf.php": "Present",
+        "ext_localconf.php": "Present",
+        "ext_tables.php": "Missing",
+        "Configuration/TCA/Overrides/pages.php": "Missing",
+        "Configuration/TypoScript/setup.typoscript": "Present",
+        "Configuration/TypoScript/constants.typoscript": "Present"
+    },
+    "extension_structure": {
+        "Classes": {
+            "Controller": {
+                "files": [
+                    "ConfigurationController.php"
+                ]
+            },
+            "NLP": {
+                "files": [
+                    "Analyzer.php"
+                ]
+            },
+            "Hooks": {
+                "files": [
+                    "PageAnalysisHook.php"
+                ]
+            },
+            "Scenario": {
+                "files": [
+                    "DefaultScenario.php",
+                    "AbstractScenario.php"
+                ]
+            }
+        },
+        "files": [
+            "composer.json",
+            "ext_emconf.php",
+            "README.md",
+            "ext_localconf.php",
+            "extension_analysis_report.json"
+        ],
+        "Resources": {
+            "Private": {
+                "Templates": {
+                    "Configuration": {
+                        "files": [
+                            "Index.html"
+                        ]
+                    }
+                }
+            }
+        },
+        "Configuration": {
+            "TypoScript": {
+                "files": [
+                    "constants.typoscript",
+                    "setup.typoscript"
+                ]
+            }
+        }
+    }
+}
