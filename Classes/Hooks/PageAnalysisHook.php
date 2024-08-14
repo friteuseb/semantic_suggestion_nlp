@@ -5,6 +5,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TalanHdf\SemanticSuggestionNlp\NLP\Analyzer;
 use TalanHdf\SemanticSuggestionNlp\Scenario\DefaultScenario;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TalanHdf\SemanticSuggestionNlp\Service\NlpAnalysisService;
+
 
 class PageAnalysisHook
 {
@@ -50,4 +52,21 @@ class PageAnalysisHook
                 ->error('Error in NLP analysis: ' . $e->getMessage(), ['exception' => $e]);
         }
     }
+
+    class NlpStatisticsHook
+    {
+        protected $nlpAnalysisService;
+
+        public function __construct(NlpAnalysisService $nlpAnalysisService)
+        {
+            $this->nlpAnalysisService = $nlpAnalysisService;
+        }
+
+        public function getNlpStatistics(array $analysisResults): array
+        {
+            return $this->nlpAnalysisService->calculateNlpStatistics($analysisResults);
+        }
+    }
+
 }
+
