@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="panel panel-default">
+    <div class="panel-heading">NLP Statistics</div>
+    <div class="panel-body">
+        <p>Average Word Count: {nlpStatistics.averageWordCount -> f:format.number(decimals: 0)}</p>
+        <p>Average Unique Word Count: {nlpStatistics.averageUniqueWordCount -> f:format.number(decimals: 0)}</p>
+        <p>Average Text Complexity: {nlpStatistics.averageComplexity -> f:format.number(decimals: 2)}</p>
+        
+        <h4>Top 10 Words</h4>
+        <ul>
+            <f:for each="{nlpStatistics.topWords}" as="count" key="word">
+                <li>{word}: {count}</li>
+            </f:for>
+        </ul>
+        
+        <f:if condition="{nlpStatistics.averageSentiment}">
+            <p>Average Sentiment: {nlpStatistics.averageSentiment -> f:format.number(decimals: 2)}</p>
+        </f:if>
+    </div>
+</div>
+</html>

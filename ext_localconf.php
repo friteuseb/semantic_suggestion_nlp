@@ -5,10 +5,11 @@ defined('TYPO3') or die();
     // Register the NLP analysis hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['semantic_suggestion']['nlpAnalysis'][] = 
         \TalanHdf\SemanticSuggestionNlp\Hooks\PageAnalysisHook::class . '->analyze';
+
     
         // Enregistrement du hook pour les statistiques NLP
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['semantic_suggestion']['nlpStatistics'][] = 
-    \TalanHdf\SemanticSuggestionNlp\Hooks\NlpStatisticsHook::class;
+    \TalanHdf\SemanticSuggestionNlp\Hooks\NlpAnalysisHook::class;
 
     
     // Register backend module for NLP configuration

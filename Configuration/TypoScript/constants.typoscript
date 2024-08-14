@@ -1,7 +1,7 @@
 plugin.tx_semanticsuggestionNlp {
     settings {
         # cat=plugin.tx_semanticsuggestionNlp/enable/10; type=boolean; label=Enable NLP analysis
-        enableNlpAnalysis = 1
+        enableNlpAnalysis = 0
         
         # cat=plugin.tx_semanticsuggestionNlp/enable/20; type=options[Default=DefaultScenario]; label=Selected NLP scenario
         selectedScenario = DefaultScenario
