@@ -4,6 +4,8 @@ namespace TalanHdf\SemanticSuggestionNlp\NLP;
 use NlpTools\Tokenizers\WhitespaceTokenizer;
 use NlpTools\Stemmers\PorterStemmer;
 use NlpTools\Similarity\CosineSimilarity;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Analyzer
 {
@@ -11,13 +13,15 @@ class Analyzer
     private $stemmer;
     private $similarity;
     private $stopWords;
+    private $connectionPool;
 
-    public function __construct()
+    public function __construct(ConnectionPool $connectionPool = null)
     {
         $this->tokenizer = new WhitespaceTokenizer();
         $this->stemmer = new PorterStemmer();
         $this->similarity = new CosineSimilarity();
         $this->stopWords = $this->getFrenchStopWords();
+        $this->connectionPool = $connectionPool ?? GeneralUtility::makeInstance(ConnectionPool::class);
     }
 
     public function analyze(string $text): array
@@ -36,7 +40,76 @@ class Analyzer
             'uniqueWordCount' => $uniqueWordCount,
             'topWords' => $topWords,
             'textComplexity' => $this->calculateTextComplexity($tokensWithoutStopWords),
+            'sentiment' => $this->analyzeSentiment($text),
         ];
+    }
+
+    public function getPageNlpData($pageUid): array
+    {
+        $pageContent = $this->getPageContent($pageUid);
+        return $this->analyze($pageContent);
+    }
+
+    public function calculateNlpSimilarity(array $nlp1, array $nlp2): float
+    {
+        $similarity = 0.0;
+        $factorsCount = 0;
+
+        if (isset($nlp1['topWords']) && isset($nlp2['topWords'])) {
+            $commonTopWords = array_intersect_key($nlp1['topWords'], $nlp2['topWords']);
+            $similarity += count($commonTopWords) / max(count($nlp1['topWords']), count($nlp2['topWords']));
+            $factorsCount++;
+        }
+
+        if (isset($nlp1['sentiment']) && isset($nlp2['sentiment'])) {
+            $similarity += 1 - abs($nlp1['sentiment'] - $nlp2['sentiment']);
+            $factorsCount++;
+        }
+
+        if (isset($nlp1['textComplexity']) && isset($nlp2['textComplexity'])) {
+            $maxComplexity = max($nlp1['textComplexity'], $nlp2['textComplexity']);
+            $similarity += 1 - (abs($nlp1['textComplexity'] - $nlp2['textComplexity']) / $maxComplexity);
+            $factorsCount++;
+        }
+
+        return $factorsCount > 0 ? $similarity / $factorsCount : 0.0;
+    }
+
+    private function getPageContent($pageUid): string
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
+        $result = $queryBuilder
+            ->select('bodytext')
+            ->from('tt_content')
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
+            )
+            ->executeQuery();
+
+        $content = '';
+        while ($row = $result->fetchAssociative()) {
+            $content .= $row['bodytext'] . ' ';
+        }
+
+        return trim($content);
+    }
+
+    private function analyzeSentiment(string $text): float
+    {
+        $positiveWords = ['bon', 'excellent', 'super', 'génial', 'heureux', 'content'];
+        $negativeWords = ['mauvais', 'terrible', 'horrible', 'triste', 'mécontent'];
+
+        $tokens = $this->tokenizer->tokenize(strtolower($text));
+        $positiveCount = count(array_intersect($tokens, $positiveWords));
+        $negativeCount = count(array_intersect($tokens, $negativeWords));
+
+        $totalWords = count($tokens);
+        if ($totalWords === 0) {
+            return 0;
+        }
+
+        return ($positiveCount - $negativeCount) / $totalWords;
     }
 
     private function removeStopWords(array $tokens): array
@@ -82,4 +155,51 @@ class Analyzer
             'au', 'aux', 'de', 'du', 'des', 'un', 'une', 'le', 'la', 'les'
         ];
     }
+
+    
+    public function calculateNlpStatistics(array $analysisResults): array
+    {
+        $totalWordCount = 0;
+        $totalUniqueWordCount = 0;
+        $totalComplexity = 0;
+        $allTopWords = [];
+        $sentimentScores = [];
+
+        foreach ($analysisResults as $pageData) {
+            if (isset($pageData['nlp'])) {
+                $nlpData = $pageData['nlp'];
+                $totalWordCount += $nlpData['wordCount'] ?? 0;
+                $totalUniqueWordCount += $nlpData['uniqueWordCount'] ?? 0;
+                $totalComplexity += $nlpData['textComplexity'] ?? 0;
+                
+                if (isset($nlpData['topWords'])) {
+                    foreach ($nlpData['topWords'] as $word => $count) {
+                        if (!isset($allTopWords[$word])) {
+                            $allTopWords[$word] = 0;
+                        }
+                        $allTopWords[$word] += $count;
+                    }
+                }
+
+                if (isset($nlpData['sentiment'])) {
+                    $sentimentScores[] = $nlpData['sentiment'];
+                }
+            }
+        }
+
+        $pageCount = count($analysisResults);
+        
+        arsort($allTopWords);
+        $allTopWords = array_slice($allTopWords, 0, 10, true);
+
+        return [
+            'averageWordCount' => $pageCount > 0 ? $totalWordCount / $pageCount : 0,
+            'averageUniqueWordCount' => $pageCount > 0 ? $totalUniqueWordCount / $pageCount : 0,
+            'averageComplexity' => $pageCount > 0 ? $totalComplexity / $pageCount : 0,
+            'topWords' => $allTopWords,
+            'averageSentiment' => !empty($sentimentScores) ? array_sum($sentimentScores) / count($sentimentScores) : null,
+        ];
+    }
+
+
 }

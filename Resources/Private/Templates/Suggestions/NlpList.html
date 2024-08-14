@@ -1,0 +1,85 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div id="content" class="section">
+    <div class="frame frame-default frame-type-menu_card_dir frame-layout-default">
+        <div class="frame-group-container">
+            <div class="frame-group-inner">
+                <div class="frame-container frame-container-default">
+                    <div class="frame-inner">
+                        <div class="frame-header">
+                            <h2 id="section" class="element-header">Suggestions NLP</h2>
+                        </div>
+
+                        <div class="card-menu card-menu-align-left card-menu-columns-3 card-menu-Article">
+                            <f:for each="{suggestions}" as="suggestion">
+                                <div class="card-menu-item" proximity="{suggestion.similarity}">
+                                    <div class="card">
+                                        <f:if condition="{suggestion.data.media}">
+                                            <div class="card-img-top">
+                                                <f:image image="{suggestion.data.media}"
+                                                         treatIdAsReference="1"
+                                                         class="img-fluid"
+                                                         alt=""
+                                                         width="410c"
+                                                         height="280c"
+                                                         loading="lazy"
+                                                />
+                                            </div>
+                                        </f:if>
+                                        <div class="card-body">
+                                            <h5 id="suggestion.data.title" class="card-title">{suggestion.data.title}</h5>
+
+                                            <f:if condition="{suggestion.excerpt}">
+                                                <p class="card-text">{suggestion.excerpt -> f:format.raw()}</p>
+                                            </f:if>
+
+                                            <div class="nlp-data">
+                                                <h6>Analyse NLP</h6>
+                                                <f:if condition="{suggestion.nlpData.topWords}">
+                                                    <p><strong>Mots-clés principaux :</strong> 
+                                                        <f:for each="{suggestion.nlpData.topWords}" as="count" key="word" iteration="iterator">
+                                                            {word}{f:if(condition: iterator.isLast, else: ', ')}
+                                                        </f:for>
+                                                    </p>
+                                                </f:if>
+                                                <f:if condition="{suggestion.nlpData.sentiment}">
+                                                    <p><strong>Sentiment :</strong> 
+                                                        <f:if condition="{suggestion.nlpData.sentiment} > 0">
+                                                            <f:then>Positif</f:then>
+                                                            <f:else>
+                                                                <f:if condition="{suggestion.nlpData.sentiment} < 0">
+                                                                    <f:then>Négatif</f:then>
+                                                                    <f:else>Neutre</f:else>
+                                                                </f:if>
+                                                            </f:else>
+                                                        </f:if>
+                                                    </p>
+                                                </f:if>
+                                                <f:if condition="{suggestion.nlpData.textComplexity}">
+                                                    <p><strong>Complexité du texte :</strong> 
+                                                        {suggestion.nlpData.textComplexity -> f:format.number(decimals: 2)}
+                                                    </p>
+                                                </f:if>
+                                            </div>
+
+                                            <p class="card-info">
+                                                <small>
+                                                    Similarité NLP : 
+                                                    <f:format.number decimals="4">{suggestion.nlpSimilarity}</f:format.number>
+                                                </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <f:link.page pageUid="{suggestion.data.uid}" class="btn btn-primary">Voir la page</f:link.page>
+                                        </div>
+                                    </div>
+                                </div>
+                            </f:for>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
